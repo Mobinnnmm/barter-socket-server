@@ -1,8 +1,8 @@
 const { Server } = require("socket.io");
 const mongoose = require("mongoose");
 const { connectToDB } = require("./lib/mongodb");
-require("./models/Message"); // Adjust path after copying
-require("./models/User"); // Adjust path after copying
+require("./models/Message"); 
+require("./models/User"); 
 
 async function initializeSocketServer(httpServer) {
   console.log("📡 Attempting MongoDB connection...");
@@ -13,7 +13,7 @@ async function initializeSocketServer(httpServer) {
   const io = new Server(httpServer, {
     path: "/api/socketio",
     cors: {
-      origin: process.env.CLIENT_URL || "http://localhost:3000", // Use env var for Vercel URL
+      origin: process.env.CLIENT_URL || "http://localhost:3000", // this will be changed with the frontend deployed link
       methods: ["GET", "POST"],
     },
   });
