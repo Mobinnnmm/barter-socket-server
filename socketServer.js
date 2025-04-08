@@ -21,7 +21,7 @@ async function initializeSocketServer(httpServer) {
   const io = new Server(httpServer, {
     path: "/api/socketio",
     cors: {
-      origin: ["http://localhost:3000", "http://localhost:3001", "https://barter-nmev.vercel.app"],
+      origin: ["http://localhost:3000", "http://localhost:3001", "https://thebarterapp.vercel.app"],
       methods: ["GET", "POST"],
       credentials: true
     },
