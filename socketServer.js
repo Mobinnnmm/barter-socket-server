@@ -9,13 +9,23 @@ async function initializeSocketServer(httpServer) {
   await connectToDB();
   console.log("✅ MongoDB connected successfully for Socket.IO server");
 
+  // console.log("⚙️  Configuring Socket.IO server...");
+  // const io = new Server(httpServer, {
+  //   path: "/api/socketio",
+  //   cors: {
+  //     origin: process.env.CLIENT_URL || "http://localhost:3000", // this will be changed with the frontend deployed link
+  //     methods: ["GET", "POST"],
+  //   },
+  // });
   console.log("⚙️  Configuring Socket.IO server...");
   const io = new Server(httpServer, {
     path: "/api/socketio",
     cors: {
-      origin: process.env.CLIENT_URL || "http://localhost:3000", // this will be changed with the frontend deployed link
+      origin: ["http://localhost:3000", "http://localhost:3001", "https://barter-nmev.vercel.app"],
       methods: ["GET", "POST"],
+      credentials: true
     },
+    transports: ['websocket', 'polling']
   });
 
   const activeConnections = new Map();
